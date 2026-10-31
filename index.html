@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kisan Rakshak AI</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23176b3a'/%3E%3Ctext x='50' y='65' text-anchor='middle' font-size='55'%3E🌾%3C/text%3E%3C/svg%3E">
+<style>
+body{margin:0;font-family:Arial;background:#f1f8e9;color:#194b2c}
+header{background:#176b3a;color:white;padding:20px;text-align:center}
+.logo{font-size:45px}
+main{max-width:850px;margin:auto;padding:20px}
+.hero{text-align:center;padding:35px 15px;background:#dcedc8;border-radius:18px}
+h1{font-size:32px}
+button,.upload{background:#176b3a;color:white;border:0;padding:14px 20px;border-radius:10px;cursor:pointer;font-size:16px;margin:8px}
+.card{background:white;padding:20px;margin:18px 0;border-radius:15px;box-shadow:0 3px 12px #0001}
+input{display:block;margin:15px auto;max-width:100%}
+#preview img,#preview video{max-width:100%;max-height:280px;border-radius:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+footer{text-align:center;background:#176b3a;color:white;padding:20px}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">🌾🛡️</div>
+<h2>KISAN RAKSHAK AI</h2>
+<p>Smart Crop Protection for Farmers</p>
+</header>
+<main>
+<section class="hero">
+<h1>Protect Your Crops!</h1>
+<p>AI-powered farm safety assistance for farmers.</p>
+<a href="#scan"><button>Scan My Field</button></a>
+</section>
+
+<section class="card" id="scan">
+<h2>📷 Upload Field Photo or Video</h2>
+<input type="file" id="file" accept="image/*,video/*">
+<div id="preview"></div>
+<button onclick="analyze()">Analyze Field</button>
+<div id="result"></div>
+</section>
+
+<h2>🌱 Our Features</h2>
+<div class="grid">
+<div class="card"><h3>📸 Scan My Field</h3><p>Upload your field media.</p></div>
+<div class="card"><h3>🐗 Animal Guide</h3><p>Learn about crop-damaging animals.</p></div>
+<div class="card"><h3>🚨 Emergency Help</h3><p>Learn safe steps during animal encounters.</p></div>
+<div class="card"><h3>📋 History</h3><p>Keep track of your field checks.</p></div>
+</div>
+
+<section class="card">
+<h2>🛡️ Important Safety Advice</h2>
+<p>Never approach, harm, trap or poison wild animals. Keep a safe distance and contact local forest authorities when needed.</p>
+</section>
+</main>
+<footer>
+<p>© 2026 Kisan Rakshak AI</p>
+<p>Safe Farmers • Protected Crops</p>
+</footer>
+<script>
+const file=document.getElementById('file');
+file.addEventListener('change',()=>{
+ const f=file.files[0];
+ const preview=document.getElementById('preview');
+ preview.innerHTML='';
+ if(!f)return;
+ const url=URL.createObjectURL(f);
+ const el=document.createElement(f.type.startsWith('video/')?'video':'img');
+ el.src=url;
+ if(el.tagName==='VIDEO')el.controls=true;
+ preview.appendChild(el);
+});
+function analyze(){
+ if(!file.files.length){
+ alert('Please upload a photo or video first!');
+ return;
+ }
+ document.getElementById('result').innerHTML=
+ '<h3>Upload Successful!</h3><p>This is a demo. Real AI animal detection is not connected yet. Please do not rely on this demo for animal identification.</p>';
+}
+</script>
+</body>
+</html>
